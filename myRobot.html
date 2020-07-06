@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ 	<title>myRobot</title>
+ </head>
+ <body >
+ 	<div class="contrainer">
+	 	<canvas id="gl-canvas" width="600" height="600">
+			Oops ... your browser doesn't support the HTML5 canvas element
+		</canvas>
+
+ </body>
+
+	<script id="vertex-shader" type="x-shader/x-vertex">
+		attribute vec4 vPosition;
+		attribute vec4 vColor;
+		varying vec4 fColor;
+
+		uniform mat4 proMat;
+		uniform mat4 mvMat;
+
+		void main() {
+    		gl_Position = proMat * mvMat * vPosition;
+    		fColor = vColor;
+
+    	}
+
+	</script>
+
+	<script id="fragment-shader" type="x-shader/x-fragment">
+		precision mediump float;
+		varying vec4 fColor;
+
+		void main(){
+    		gl_FragColor = fColor;
+		}
+	</script>
+
+	<script type="text/javascript" src="Common/webgl-utils.js"></script>
+	<script type="text/javascript" src="Common/initShaders.js"></script>
+	<script type="text/javascript" src="Common/MV.js"></script>
+	<script type="text/javascript" src="myRobot.js"></script>
+
+	<div> Base  </div>
+	<div> -180 <input id="slider1" type="range" min="-180" max="180" step="10" value="0" /> 180 </div><br/>
+
+	<div> Lower arm </div> 
+	<div>-180 <input id="slider2" type="range" min="-180" max="180" step="10" value="0" /> 180 </div><br/>
+
+	<div> Upper arm  </div>
+	<div>-180 <input id="slider3" type="range" min="-180" max="180" step="10" value="0" /> 180 </div><br/>
+</html>
